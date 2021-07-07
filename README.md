@@ -1,9 +1,10 @@
 # MEME gen
 
-- [ ] add axios ,sass
-- [ ] fetch meme templates from image flip
-- [ ] create the meme component and render those templates
-- [ ] choose template  conditionally render template edit and meme gallery component
-- [ ] render form inputs based on the api box tile 
-- [ ] Set the the processed meme inside the in the state
-- [ ] **bonus:** give download and back button
+- [x] add axios ,sass
+- [x] fetch meme templates from image flip
+- [x] create the meme component and render those templates
+- [x] choose template  conditionally render template edit and meme gallery component
+- [x] render form inputs based on the api box tile 
+- [x] Set the the processed meme inside the in the state
+- [x] **bonus:** back button
+- [ ] **bonus:** give download
