@@ -15,21 +15,32 @@ function App() {
 
 		username: 'teasty',
 		password: 'PPS$Asr52ttCfaF',
+		boxes: [],
 	});
 
 	const paramsSetter = obj => {
-		const paramArr = Object.entries(obj).map(
-			([key, value]) => `${key}=${value}`
-		);
+		let tempObj = {};
+		obj.boxes.forEach((box, i) => {
+			tempObj = { ...tempObj, [`boxes[${i}][text]`]: box.text };
+		});
+		let newObj = { ...obj, ...tempObj };
+		delete newObj.boxes;
+		setForm(newObj);
+
+		const paramArr = Object.entries(newObj).map(([key, value]) => {
+			return `${key}=${value}`;
+		});
 		return '?' + paramArr.join('&');
 	};
 
 	const getCustomMeme = async e => {
 		e.preventDefault();
+		const urlTemplate = `https://api.imgflip.com/caption_image${paramsSetter(
+			form
+		)}`;
+		console.log(urlTemplate);
 		try {
-			const res = await axios.get(
-				`https://api.imgflip.com/caption_image${paramsSetter(form)}`
-			);
+			const res = await axios.get(urlTemplate);
 			console.log('meme log', res.data.data.url);
 			setMeme({ ...meme, url: res.data.data.url });
 		} catch (error) {
@@ -45,7 +56,7 @@ function App() {
 	useEffect(() => {
 		loadData();
 	}, []);
-	console.log(meme);
+	// console.log(form);
 	return (
 		<div className='App'>
 			<h1>Meme Gen</h1>
