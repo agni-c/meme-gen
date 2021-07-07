@@ -24,7 +24,7 @@ function App() {
 			tempObj = { ...tempObj, [`boxes[${i}][text]`]: box.text };
 		});
 		let newObj = { ...obj, ...tempObj };
-		delete newObj.boxes;
+		// delete newObj.boxes;
 		setForm(newObj);
 
 		const paramArr = Object.entries(newObj).map(([key, value]) => {
