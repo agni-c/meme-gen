@@ -8,7 +8,11 @@ const MemeEdit = ({ meme, setMeme, getCustomMeme, form, setForm }) => {
 						key={i}
 						type='text'
 						placeholder={` Meme Caption ${i + 1}`}
-						onChange={e => setForm({ ...form, [`text${i}`]: e.target.value })}
+						onChange={e => {
+							let tempBoxes = form.boxes;
+							tempBoxes[i] = { text: e.target.value };
+							setForm({ ...form, boxes: tempBoxes });
+						}}
 						className='meme-input'
 					/>
 				))}
